@@ -1,0 +1,11 @@
+public class RemoverMovimentacaoTeste extends BaseTest {
+    private MenuPage menuPage = new MenuPage();
+    private ResumoMensalPage resumoMensalPage = new ResumoMensalPage();
+
+    @Test
+    public void testExcluirMovimentcao() {
+        menuPage.acessarResumoMensal();
+        resumoMensalPage.clicarBotaoExcluir("Movimentacao para exclusao");
+        Assert.assertEquals("Movimentação removida com sucesso!", resumoMensalPage.coletarUmaMenssagemDeSucesso());
+    }
+}

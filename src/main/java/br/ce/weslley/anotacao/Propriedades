@@ -1,0 +1,41 @@
+1.0.0
+public class Propriedades {
+
+    public static boolean fechar_browser = true;
+    public static Browsers browser = Browsers.CHROME;
+
+    public enum Browsers {
+        CHROME,
+        FIREFOX
+    }
+}
+
+Anotação:
+Nessa classe de propriedade nós guardamos duas variáveis "fechar_browser" e "browser".
+fechar_browser: É do tipo booleano. A variável serve para controlar como os testes serão execultados, existem dois tipos
+de execução de testes uma na qual o navegador a cada testes fecha e abre o navegador, e outra na qual ele executa tudo
+em única janela.
+Quando inserimos true a variável de "fechar_browser" queremos que a cada teste o driver abra e feche a navegador. O uso é
+recomendado para testes após a fase de desenvolvimento, pois são testes mais demorados, já que, abertura e fechamento da
+janela muitas vezes é mais demorado do que o próprio teste, porém, o resultado dos testes é mais seguro.
+Quando inserimos false a variável de "fechar_browser" queremos que todos os testes sejão execuados em única janela o que
+faz com que o tempo de execução diminua e muito, bom para fase de desenvolvimento no qual o desenvolvedor precisa de
+um feedback rápido da aplicação.
+browser: É do tipo Browsers um enum criado com valores possíveis de serem usados, ele recebe um dos valores do enum.
+public enum Browsers é uma listagem de valores que podemser atribuidos a variável de browser. O enum deveser criado antes
+da variável.
+
+
+
+public class Propriedades {
+
+    public static boolean fechar_browser = false;
+    public static Browsers browser = Browsers.FIREFOX;
+
+    public static String NOME_CONTA_ALTERADA = "Conta Alterada" + System.nanoTime();
+
+    public enum Browsers {
+        CHROME,
+        FIREFOX
+    }
+}

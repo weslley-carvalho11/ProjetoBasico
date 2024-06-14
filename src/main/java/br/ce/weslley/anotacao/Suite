@@ -1,0 +1,25 @@
+@Suite.SuiteClasses({
+        ContaTeste.class,
+        MovimentacaoTeste.class,
+        RemoverMovimentacaoTeste.class,
+        SaldoTeste.class,
+        ResumoTeste.class
+})
+public class SuiteTeste {
+    private static LoginPage loginPage = new LoginPage();
+
+    @BeforeClass
+    public static void reset(){
+        loginPage.acessarTela();
+        loginPage.setEmail("contato.weslley.carvalho@gmail.com");
+        loginPage.setSenha("abelhaAzulTurquesa23");
+        loginPage.entrar();
+
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("reset")));
+
+        loginPage.reset();
+
+        DriverFactory.killDriver();
+    }
+}

@@ -1,0 +1,67 @@
+1.0.0
+public class BaseTest {
+    @Rule
+    public TestName testName = new TestName();
+
+
+    @After
+    public void finalizar() throws IOException {
+        TakesScreenshot screenshot = (TakesScreenshot) DriverFactory.getDriver();
+        File arquivo = screenshot.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(arquivo, new File("target" + File.separator + "screenshot" + File.separator + testName.getMethodName() + ".png"));
+
+        if (Propriedades.fechar_browser) {
+            DriverFactory.getDriver();
+        }
+    }
+}
+
+Anotações:
+- @Rule:
+Serve para adicionar ou definir um comportamento em método de teste em uma classe. Essa anotção foi desconsiderada na
+versão 5 do JUnit.
+
+- @After
+É uma anotação que serve para indicar para Java o que ele deve fazer após a execução do(s) teste(s). Ele está nesse arquivo
+para centralizar como os testes devem se comportar após a execução do teste. Todos os testes executados teram o mesmo
+comportamento.
+
+
+- public TestName testName = new TestName();
+Estamos instanciando um classe chamada de TestName.Usando um modificador público para ser usado em qualquer lugar.
+Essa regra permite o uso do nome dos teste atual dentro dos métodos. Ele será usado nesse caso para construir o nome dos
+arquivos de screenshot dos testes, isso facilita a não repetições de nome.
+
+
+public void finalizar() throws IOException {
+O método público sem retorno. O "throws IOException"
+Tradução:
+Throws (Tróus) = Lançar
+Exception = Esseção
+
+
+public class BaseTest {
+
+    @Rule
+    public TestName testName = new TestName();
+
+
+    private LoginPage loginPage = new LoginPage();
+
+    @Before
+    public void iniciar() {
+        loginPage.acessarTela();
+        loginPage.logar("contato.weslley.carvalho@gmail.com", "abelhaAzulTurquesa23");
+    }
+
+    @After
+    public void finalizar() throws IOException {
+        TakesScreenshot screenshot = (TakesScreenshot) DriverFactory.getDriver();
+        File arquivo = screenshot.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(arquivo, new File("target" + File.separator + "screenshot" + File.separator + testName.getMethodName() + ".png"));
+
+        if (Propriedades.fechar_browser) {
+            DriverFactory.killDriver();
+        }
+    }
+}

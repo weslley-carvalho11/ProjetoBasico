@@ -1,0 +1,13 @@
+Site:
+https://github.com/junit-team/junit4/wiki/rules
+
+Site com as diferenças entre JUnit 4 e JUnit 5:
+https://www.baeldung.com/junit-5-migration
+
+Site com o guia do JUnit 5:
+https://junit.org/junit5/docs/current/user-guide/
+
+
+Nas casos com pages nos temos que listar as interações com campos da tela.
+Temos que retornar a Classse ou outra classe na qual iremos ir.
+Criamos uma outra classe que irá executar o código.

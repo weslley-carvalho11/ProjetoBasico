@@ -1,0 +1,39 @@
+public class AdicionarContaPage extends BasePage {
+
+
+    MenuPage menuPage = new MenuPage(); //Adicionado para fazer a inserção de várias contas
+
+    public void setNome(String conta) {
+        escrever("nome", conta);
+    }
+
+    public void salvar() {
+        clicarBotao(By.xpath("//button[.='Salvar']"));
+    }
+
+    public String obterMenssagemDeSucesso() {
+        return obterTexto(By.xpath("//div[@class='alert alert-success']"));
+    }
+
+    public String obterMenssagemDeErro() {
+        return obterTexto(By.xpath("//div[@class='alert alert-danger']"));
+    }
+
+    // Extra
+    public void adicionarConta(String conta) {
+        setNome(conta);
+        salvar();
+        obterMenssagemDeSucesso();
+    }
+
+    public void cadastrarVariasContas(int quantidadeContas) {
+        for (int i = 1; i <= quantidadeContas; i++) {
+            menuPage.acessarTelaAdicionarConta();
+            setNome("Conta " + i);
+            salvar();
+        }
+    }
+}
+O Assert.Equals deve estar na classe de teste
+Inicialmente tinha usado isso como xpath, porém, caso alguém mude a mensagem pode ser que eu tenha que refazer o código.
+Então é melhor usar o class name que tem menos chance de ser mudado.
